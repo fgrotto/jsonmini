@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y clang-format clang-tidy build-essential
+
+    - name: Run formatter
+      run: make format
+
+    - name: Build
+      run: make build
+
+    - name: Run static analysis
+      run: make analyze
+
+    - name: Run tests
+      run: make test
