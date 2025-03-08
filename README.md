@@ -11,7 +11,7 @@
 ## Usage
 
 ```
-make && ./jsonmini
+make && make test 
 ```
 ## Reference
 
